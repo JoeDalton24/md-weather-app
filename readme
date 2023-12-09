@@ -1,0 +1,69 @@
+# Md Weather App
+
+React Native repository for showing weather based by city search.
+
+# Demo
+
+[demo](./assets/demo.mp4)
+
+# Table of Contents
+
+## Mandatory resources
+
+[Get Started](#get-started)  
+[External resources](#external-resources)
+
+## Core concepts and layers
+
+[Api](#api)  
+[Services](#services)
+
+# Mandatory resources
+
+# Get started
+
+Clone the project, and run `npm install` to install the project dependencies.
+
+You will need the environment informations for the local environment
+For now, you can copy paste the content of the [dev environment](./config/.env.dev) config to a new `./.env` file that won't be commited to the repository.
+
+That's it. You can run the project locally using the command `npm start`
+It runs a local server.
+
+# External resources
+
+The project stack is: _Typescript_, _Expo_, _React_,_Styled-Components_,_React-Native_
+
+- Learn about Node.js and npm here: https://www.w3schools.com/nodejs/nodejs_npm.asp
+- Get started using Typescript on https://www.typescriptlang.org/
+- React is a UI library, primarly used here with the hooks API:
+  - https://reactjs.org/tutorial/tutorial.html
+  - https://reactjs.org/docs/hooks-intro.html
+- Styled Component is a _Css in JS_ library allowing to easily style your React components: https://styled-components.com/
+
+# Conventions
+
+- All files and folders are named using the _camelCase_ format, except for assets files named in _kebab-case_
+- All components relevant to only one screen should be placed in _/ui/screens/[pageName]/[componentName]_
+- All components that will be used on different screens should be placed in _/ui/components/[optionalSubfolder]/[componentName]_
+
+# Wording
+
+- For handling I18n i will use a tool call [`sync-wording`](https://www.npmjs.com/package/@betomorrow/sync-wording) unfortunately due to lack of time I was unable to integrate the tool but it will be available in the next version..
+
+# Core concepts and layers
+
+Beside the clear separation between UI and business logic, the application has layers corresponding to the different domain objects.  
+For instance, all apis, hooks, types, services and utility functions regarding the `weather` domain will be found under the `src/domain/weather` folder.
+
+# Api
+
+This project uses a [simple wrapper](./src/core/api/api.ts) over the [axios](https://github.com/axios/axios) library to perform simple such as GET, POST, PUT, DELETE and handle Api Key Authentification.
+
+This wrapper is accessed by many business logic related apis to communicate with the OpenWeatherMap Api. See [Weather Content Api](./src/domain/weather/weatherApi.ts) to get a simple example.
+
+# Services
+
+As you may have seen already, domain Apis and Stores are managed by differents Services whitin the application.  
+Services role is to manage different datas by calling apis and ensure local states by updating stores. A service may be used for any type of domain and some services may rely on others to perform tasks.  
+Theses services are accessed by the UI components using `React Contexts`. The services container is created at the entry point(s) of the application and may be initialized with initial data.

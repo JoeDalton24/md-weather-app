@@ -1,4 +1,4 @@
-import { ImageBackground, ScrollView } from "react-native";
+import { ActivityIndicator, ImageBackground, ScrollView } from "react-native";
 import { useServices } from "../../core/serviceContext";
 import styled from "styled-components/native";
 import { Search } from "../components/search";
@@ -29,29 +29,33 @@ export const HomeScreen: React.FC = () => {
           onChangeText={setCity}
           onSubmitEditing={() => run()}
         />
-        {!weather ? (
-          <Text>Loading...</Text>
+        {loading ? (
+          <ActivityIndicator size="large" />
         ) : (
-          <CurrentForeCast currentWeather={weather} />
+          <>
+            {weather ? (
+              <>
+                <CurrentForeCast currentWeather={weather} />
+                <ScrollView
+                  contentContainerStyle={{ flexGrow: 1 }}
+                  style={{ flex: 1 }}
+                >
+                  <FutureForecastContainer>
+                    {weather.daily ? (
+                      weather.daily.map((day, index) => {
+                        if (index !== 0) {
+                          return <DailyForeCast key={day.dt} day={day} />;
+                        }
+                      })
+                    ) : (
+                      <NoWeather>No Weather !!</NoWeather>
+                    )}
+                  </FutureForecastContainer>
+                </ScrollView>
+              </>
+            ) : null}
+          </>
         )}
-        {weather ? (
-          <ScrollView
-            contentContainerStyle={{ flexGrow: 1 }}
-            style={{ flex: 1 }}
-          >
-            <FutureForecastContainer>
-              {weather.daily ? (
-                weather.daily.map((day, index) => {
-                  if (index !== 0) {
-                    return <DailyForeCast key={day.dt} day={day} />;
-                  }
-                })
-              ) : (
-                <NoWeather>No Weather to show</NoWeather>
-              )}
-            </FutureForecastContainer>
-          </ScrollView>
-        ) : null}
       </ImageBackground>
     </Container>
   );
