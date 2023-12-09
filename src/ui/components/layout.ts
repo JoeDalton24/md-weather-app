@@ -32,11 +32,9 @@ export const sizes: Record<Size, string> = {
 };
 
 export const stack = (
-  gap: number | Size,
   justify: FlexJustify = "flex-start",
   align: FlexAlign = "flex-start",
-  reverse?: "reverse",
-  noMarginBotoom = false
+  reverse?: "reverse"
 ) => css`
   display: flex;
   flex-direction: ${reverse ? "column-reverse" : "column"};
@@ -45,7 +43,6 @@ export const stack = (
 `;
 
 export const row = (
-  gap: number | Size,
   justify: FlexJustify = "flex-start",
   align: FlexAlign = "flex-start",
   reverse?: "reverse",
