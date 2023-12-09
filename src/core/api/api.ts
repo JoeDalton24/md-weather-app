@@ -41,9 +41,10 @@ export class Api {
   }
 
   private initializeInteceptors(): void {
+    console.log("url", `${Config.API_BASE_URL}`);
     this.instance.interceptors.request.use((config) => ({
       ...config,
-      url: `${Config.API_BASE_URL}?appid=${Config.OPEN_WEATHER_KEY}&${config.url}`,
+      url: `${Config.API_BASE_URL}${config.url}&appid=${Config.OPEN_WEATHER_KEY}`,
     }));
   }
 }
