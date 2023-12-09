@@ -12,7 +12,6 @@ export class WeatherApi {
     return result.data;
   }
   async getCityLatAndLon(city: string): Promise<CityCoordonnate> {
-    // console.log("this",this.api.get)
     const result = await this.api.get<CityFromOpenWeather>(
       `/weather?q=${city}`
     );

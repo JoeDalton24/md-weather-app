@@ -5,8 +5,8 @@ import { Search } from "../components/search";
 import { useState } from "react";
 import { useAsync } from "../../utils/hooks";
 import { OpenWeather } from "../../domain/weather/weather";
-import { CurrentForeCast } from "../components/currentForecast";
-import { DailyForeCast } from "../components/dailyForecast";
+import { CurrentForeCast } from "../components/weather/currentForecast";
+import { DailyForeCast } from "../components/weather/dailyForecast";
 
 export const HomeScreen: React.FC = () => {
   const [city, setCity] = useState<string>("Dakar");

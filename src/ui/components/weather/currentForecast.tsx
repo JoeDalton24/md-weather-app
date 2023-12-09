@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components/native";
-import { OpenWeather } from "../../domain/weather/weather";
+import { OpenWeather } from "../../../domain/weather/weather";
+import { row } from "../layout";
 
 interface CurrenForeCastProps {
   currentWeather: OpenWeather;

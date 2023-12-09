@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components/native";
-import { Daily } from "../../domain/weather/weather";
-import { timestampToDay } from "../../utils/date";
+import { Daily } from "../../../domain/weather/weather";
+import { timestampToDay } from "../../../utils/date";
 
 interface DailyForeCastProps {
   day: Daily;
